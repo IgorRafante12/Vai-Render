@@ -35,8 +35,7 @@ class Teste {
         'Energia produzida por uma bateria.',
         'Energia gerada por um gerador elétrico.',
       ],
-      indiceRespostaCerta:
-          0, // Resposta correta: Energia associada ao movimento de um objeto.
+      indiceRespostaCerta: 0, // Resposta correta: Energia associada ao movimento de um objeto.
     ),
     Pergunta(
       titulo: 'Pergunta 2',
@@ -58,8 +57,7 @@ class Teste {
         'Um objeto em movimento permanecerá em movimento a menos que seja aplicada uma força externa sobre ele.',
         'A energia total de um sistema isolado permanece constante ao longo do tempo.',
       ],
-      indiceRespostaCerta:
-          1, // Resposta correta: Para toda ação, há uma reação igual e oposta.
+      indiceRespostaCerta: 1, // Resposta correta: Para toda ação, há uma reação igual e oposta.
     ),
     Pergunta(
       titulo: 'Pergunta 4',
@@ -70,18 +68,16 @@ class Teste {
         'A energia de um sistema pode ser criada ou destruída.',
         'A energia total de um sistema isolado permanece constante ao longo do tempo.',
       ],
-      indiceRespostaCerta:
-          3, // Resposta correta: A energia total de um sistema isolado permanece constante ao longo do tempo.
+      indiceRespostaCerta: 3, // Resposta correta: A energia total de um sistema isolado permanece constante ao longo do tempo.
     ),
     Pergunta(
       titulo: 'Pergunta 5',
       corpo: 'O que é a lei da inércia?',
       resposta: [
-       
         'A força resultante aplicada sobre um objeto é diretamente proporcional à sua aceleração.',
         'Para cada ação, há uma reação igual e oposta.',
         'A energia total de um sistema isolado permanece constante ao longo do tempo.',
-         'Um objeto em repouso tende a permanecer em repouso, e um objeto em movimento tende a permanecer em moviment',
+        'Um objeto em repouso tende a permanecer em repouso, e um objeto em movimento tende a permanecer em moviment',
       ],
       indiceRespostaCerta:
           3, // Resposta correta: Um objeto em repouso tende a permanecer em repouso, e um objeto em movimento tende a permanecer em movimento com velocidade constante, a menos que seja aplicada uma força externa sobre ele.
@@ -90,24 +86,21 @@ class Teste {
       titulo: 'Pergunta 6',
       corpo: 'O que é a velocidade média?',
       resposta: [
-       
         'A quantidade de movimento de um objeto.',
-         'A razão entre a distância percorrida e o tempo gasto para percorrê-la.',
+        'A razão entre a distância percorrida e o tempo gasto para percorrê-la.',
         'A taxa na qual a posição de um objeto muda com o tempo.',
         'A energia associada ao movimento de um objeto.',
       ],
-      indiceRespostaCerta:
-          1, // Resposta correta: A razão entre a distância percorrida e o tempo gasto para percorrê-la.
+      indiceRespostaCerta: 1, // Resposta correta: A razão entre a distância percorrida e o tempo gasto para percorrê-la.
     ),
     Pergunta(
       titulo: 'Pergunta 7',
       corpo: 'Qual é a fórmula da segunda lei de Newton?',
       resposta: [
-     
         'F = m / a',
         'F = m + a',
         'F = m - a',
-           'F = m * a',
+        'F = m * a',
       ],
       indiceRespostaCerta: 3, // Resposta correta: F = m * a.
     ),
@@ -115,14 +108,12 @@ class Teste {
       titulo: 'Pergunta 8',
       corpo: 'O que é a gravidade?',
       resposta: [
-        
         'A medida da quantidade de matéria em um objeto.',
         'A taxa na qual a posição de um objeto muda com o tempo.',
         'A força de atração entre dois corpos massivos.',
         'A energia associada ao movimento de um objeto.',
       ],
-      indiceRespostaCerta:
-          2, // Resposta correta: A força de atração entre dois corpos massivos.
+      indiceRespostaCerta: 2, // Resposta correta: A força de atração entre dois corpos massivos.
     ),
     Pergunta(
       titulo: 'Pergunta 9',
@@ -133,8 +124,7 @@ class Teste {
         'A medida da quantidade de matéria em um objeto.',
         'A energia associada ao movimento de um objeto.',
       ],
-      indiceRespostaCerta:
-          0, // Resposta correta: A taxa na qual o trabalho é realizado.
+      indiceRespostaCerta: 0, // Resposta correta: A taxa na qual o trabalho é realizado.
     ),
     Pergunta(
       titulo: 'Pergunta 10',
@@ -159,29 +149,30 @@ class Teste {
 
 class _p4State extends State<p4> {
   int PerguntaAtual = 0;
+  int _pontos = 0;
 
   @override
   Widget build(BuildContext context) {
+    var pergunta = Teste().listPerguntas[PerguntaAtual];
     return MaterialApp(
       home: Scaffold(
         body: Stack(
           children: [
             Container(
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 40, vertical: 40),
+                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 40),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Column(
                       children: [
+                        Text('Pontos: ${_pontos}'),
                         Text(
-                          Teste().listPerguntas[PerguntaAtual].titulo,
-                          style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold),
+                          pergunta.titulo,
+                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          Teste().listPerguntas[PerguntaAtual].corpo,
+                          pergunta.corpo,
                           style: TextStyle(
                             fontSize: 20,
                             color: Colors.black,
@@ -199,17 +190,17 @@ class _p4State extends State<p4> {
                             onPressed: () {
                               setState(() {
                                 PerguntaAtual++;
+                                if (pergunta.indiceRespostaCerta == 0) _pontos++;
                               });
                             },
                             child: Text(
-                              Teste().listPerguntas[PerguntaAtual].resposta[0],
+                              pergunta.resposta[0],
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 15,
                               ),
                             ),
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.yellow[100]),
+                            style: ElevatedButton.styleFrom(backgroundColor: Colors.yellow[100]),
                           ),
                         ),
                         Padding(
@@ -221,19 +212,17 @@ class _p4State extends State<p4> {
                               onPressed: () {
                                 setState(() {
                                   PerguntaAtual++;
+                                  if (pergunta.indiceRespostaCerta == 1) _pontos++;
                                 });
                               },
                               child: Text(
-                                Teste()
-                                    .listPerguntas[PerguntaAtual]
-                                    .resposta[1],
+                                pergunta.resposta[1],
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 15,
                                 ),
                               ),
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.yellow[100]),
+                              style: ElevatedButton.styleFrom(backgroundColor: Colors.yellow[100]),
                             ),
                           ),
                         ),
@@ -244,17 +233,17 @@ class _p4State extends State<p4> {
                             onPressed: () {
                               setState(() {
                                 PerguntaAtual++;
+                                if (pergunta.indiceRespostaCerta == 2) _pontos++;
                               });
                             },
                             child: Text(
-                              Teste().listPerguntas[PerguntaAtual].resposta[2],
+                              pergunta.resposta[2],
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 15,
                               ),
                             ),
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.yellow[100]),
+                            style: ElevatedButton.styleFrom(backgroundColor: Colors.yellow[100]),
                           ),
                         ),
                         Padding(
@@ -266,12 +255,11 @@ class _p4State extends State<p4> {
                               onPressed: () {
                                 setState(() {
                                   PerguntaAtual++;
+                                  if (pergunta.indiceRespostaCerta == 3) _pontos++;
                                 });
                               },
                               child: Text(
-                                Teste()
-                                    .listPerguntas[PerguntaAtual]
-                                    .resposta[3],
+                                Teste().listPerguntas[PerguntaAtual].resposta[3],
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 15,

@@ -166,7 +166,6 @@ class _p4State extends State<p4> {
                   children: [
                     Column(
                       children: [
-                        Text('Pontos: ${_pontos}'),
                         Text(
                           pergunta.titulo,
                           style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
@@ -178,6 +177,12 @@ class _p4State extends State<p4> {
                             color: Colors.black,
                           ),
                         ),
+                        Padding(
+                            padding: EdgeInsets.only(top: 20),
+                            child: Text(
+                              'Pontos: ${_pontos}',
+                              style: TextStyle(fontSize: 20, color: Colors.deepOrange),
+                            ))
                       ],
                     ),
                     Column(
